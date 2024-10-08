@@ -1,0 +1,28 @@
+server:
+  host: ""
+  port: "8080"
+
+db:
+  username: "postgres"
+  password: "admin"
+  host: "order-service-db"
+  port: "5432"
+  dbname: "postgres"
+  ssl_mode: "disable"
+
+nats:
+  host: "nats-streaming"
+  port: "4222"
+  cluster_id: "WB-L0"
+  client_id: "subscriber"
+  durable_name: "WB-L0-Name"
+  subject_post: "PostOrderChannel"
+
+kafka:
+  brokers:
+    - "kafka:9092"
+  topic: "orders"
+  group_id: "order-group"
+
+CSRF:
+  Secret: "secret_key"

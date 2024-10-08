@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Details</title>
+</head>
+<body>
+
+<h2>Order Details</h2>
+
+{{if .Error}}
+<p style="color:red;">{{.Error}}</p>
+{{else if .Order}}
+<div>
+    <strong>Order UID:</strong> {{.Order.OrderUID}}<br>
+    <strong>Track Number:</strong> {{.Order.TrackNumber}}<br>
+    <strong>Entry:</strong> {{.Order.Entry}}<br>
+    <strong>Locale:</strong> {{.Order.Locale}}<br>
+    <strong>Internal Signature:</strong> {{.Order.InternalSignature}}<br>
+    <strong>Customer ID:</strong> {{.Order.CustomerID}}<br>
+    <strong>Delivery Service:</strong> {{.Order.DeliveryService}}<br>
+    <strong>Shard Key:</strong> {{.Order.ShardKey}}<br>
+    <strong>SmID:</strong> {{.Order.SmID}}<br>
+    <strong>Date Created:</strong> {{.Order.DateCreated}}<br>
+    <strong>Oof Shard:</strong> {{.Order.OofShard}}<br>
+
+    <h3>Delivery</h3>
+    <strong>Name:</strong> {{.Order.Delivery.Name}}<br>
+    <strong>Phone:</strong> {{.Order.Delivery.Phone}}<br>
+    <strong>Zip:</strong> {{.Order.Delivery.Zip}}<br>
+    <strong>City:</strong> {{.Order.Delivery.City}}<br>
+    <strong>Address:</strong> {{.Order.Delivery.Address}}<br>
+    <strong>Region:</strong> {{.Order.Delivery.Region}}<br>
+    <strong>Email:</strong> {{.Order.Delivery.Email}}<br>
+
+    <h3>Payment</h3>
+    <strong>Transaction:</strong> {{.Order.Payment.Transaction}}<br>
+    <strong>Request ID:</strong> {{.Order.Payment.RequestID}}<br>
+    <strong>Currency:</strong> {{.Order.Payment.Currency}}<br>
+    <strong>Provider:</strong> {{.Order.Payment.Provider}}<br>
+    <strong>Amount:</strong> {{.Order.Payment.Amount}}<br>
+    <strong>Payment DT:</strong> {{.Order.Payment.PaymentDT}}<br>
+    <strong>Bank:</strong> {{.Order.Payment.Bank}}<br>
+    <strong>Delivery Cost:</strong> {{.Order.Payment.DeliveryCost}}<br>
+    <strong>Goods Total:</strong> {{.Order.Payment.GoodsTotal}}<br>
+    <strong>Custom Fee:</strong> {{.Order.Payment.CustomFee}}<br>
+
+    <h3>Items</h3>
+    {{if .Order.Items}}
+    {{range .Order.Items}}
+    <div>
+        <strong>Chart ID:</strong> {{.ChrtID}}<br>
+        <strong>Track Number:</strong> {{.TrackNumber}}<br>
+        <strong>Price:</strong> {{.Price}}<br>
+        <strong>RID:</strong> {{.RID}}<br>
+        <strong>Name:</strong> {{.Name}}<br>
+        <strong>Sale:</strong> {{.Sale}}<br>
+        <strong>Size:</strong> {{.Size}}<br>
+        <strong>Total Price:</strong> {{.TotalPrice}}<br>
+        <strong>NmID:</strong> {{.NmID}}<br>
+        <strong>Brand:</strong> {{.Brand}}<br>
+        <strong>Status:</strong> {{.Status}}<br><br>
+    </div>
+    {{end}}
+    {{else}}
+    <p>No items found for this order.</p>
+    {{end}}
+</div>
+{{else}}
+<p>No order data available.</p>
+{{end}}
+
+</body>
+</html>
