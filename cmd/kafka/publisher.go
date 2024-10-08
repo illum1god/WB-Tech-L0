@@ -37,11 +37,13 @@ func main() {
 	if err != nil {
 		log.Fatalf("Ошибка создания продюсера после 5 попыток: %v", err)
 	}
-	defer producer.Close()
+	defer func(producer sarama.SyncProducer) {
+		_ = producer.Close()
+	}(producer)
 
 	order := usecase.OrderInput{
 		Order: domain.Order{
-			OrderUID:          "b563feb7b2b84b6test",
+			OrderUID:          "b563feb7b2b84b6new",
 			TrackNumber:       "WBILMTESTTRACK",
 			Entry:             "WBIL",
 			Delivery:          domain.Delivery{},
@@ -79,7 +81,7 @@ func main() {
 	time.Sleep(4 * time.Second)
 	order2 := usecase.OrderInput{
 		Order: domain.Order{
-			OrderUID:          "b563feb7b2b84b6te",
+			OrderUID:          "b563feb7b2b84b6new2",
 			TrackNumber:       "WBILMTESTTRACK",
 			Entry:             "WBIL",
 			Delivery:          domain.Delivery{},

@@ -45,7 +45,7 @@ func (o *orderRepository) GetOrderByUID(ctx context.Context, orderUID string) (d
 	if err != nil {
 		return domain.Order{}, err
 	}
-	o.repo.Save(orderUID, &orderRes)
+	o.repo.Save(orderUID, orderRes)
 	return orderRes, nil
 }
 
@@ -54,6 +54,6 @@ func (o *orderRepository) SaveOrder(ctx context.Context, order domain.Order) err
 	if err != nil {
 		return err
 	}
-	o.repo.Save(order.OrderUID, &order)
+	o.repo.Save(order.OrderUID, order)
 	return nil
 }

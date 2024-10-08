@@ -7,7 +7,7 @@ import (
 
 type Order interface {
 	Get(uid string) (domain.Order, bool)
-	Save(uid string, orderToSave *domain.Order) bool
+	Save(uid string, orderToSave domain.Order) bool
 }
 
 type Cache struct {
@@ -40,13 +40,9 @@ func (o *orderRepository) Get(uid string) (domain.Order, bool) {
 	return order, true
 }
 
-func (o *orderRepository) Save(uid string, orderToSave *domain.Order) bool {
-	if orderToSave == nil {
-		return false
-	}
-
+func (o *orderRepository) Save(uid string, orderToSave domain.Order) bool {
 	o.mu.Lock()
 	defer o.mu.Unlock()
-	o.orderRepoByUID[uid] = *orderToSave
+	o.orderRepoByUID[uid] = orderToSave
 	return true
 }

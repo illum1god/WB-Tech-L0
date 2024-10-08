@@ -70,6 +70,12 @@ func main() {
 	db.SetConnMaxLifetime(5 * time.Minute)
 
 	repos := repository.NewRepository(db)
+
+	err = repos.RestoreCache()
+	if err != nil {
+		log.Fatalf("Не удалось восстановить кэш из базы данных: %v", err)
+	}
+
 	services := usecase.NewService(repos)
 
 	time.Sleep(20 * time.Second)
