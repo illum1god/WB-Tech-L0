@@ -11,7 +11,6 @@
 - **Docker Compose**
 - **Apache Kafka**
 - **Gin (HTTP-сервер)**
-- **Redpanda Console (для просмотра сообщений в Kafka)**
 
 ## Запуск проекта
 
